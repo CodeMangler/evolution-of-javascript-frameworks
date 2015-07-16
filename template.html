@@ -325,22 +325,23 @@ function verifyFormData() {
     </hgroup>
     <article class="smaller">
       <pre class="prettyprint" data-lang="javascript">
-function createRequest() {
-    if (window.XMLHttpRequest) {
-        return new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-        return new ActiveXObject("Microsoft.XMLHTTP");
-    }
+function createXHR() {
+    <b>if (navigator.userAgent.indexOf("MSIE") != -1){
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+      xmlhttp=new XMLHttpRequest();
+    }</b>
 }
-function requestUsingGet(url, listener) {
-    var url = "count?text=" + getElementText("myinputid");
-    req = createRequest();
-    req.onreadystatechange = listener;
+function requestData(url, callback) {
+    <b>req = createXHR();
+    req.onreadystatechange = callback;
     req.open("GET", url, true); 
-    req.send(null);
+    req.send(null);</b>
 }
-function getFromResponse(request, name) {
-    return request.responseXML.getElementsByTagName(name)[0].childNodes[0].nodeValue;
+</pre>
+<pre class="prettyprint" data-lang="javascript">
+function parseResponseData(response) {
+    return <b>response.responseXML</b>.getElementsByTagName(name)[0].childNodes[0].nodeValue;
 }
 </pre>
     </article>
@@ -353,14 +354,14 @@ function getFromResponse(request, name) {
     </hgroup>
     <article>
       <pre class="prettyprint" data-lang="javascript">
-xmlhttp.onreadystatechange=function()
+<b>xmlhttp.onreadystatechange = function()</b>
+{
+  <b>if (xmlhttp.readyState==4 && xmlhttp.status==200)</b>
   {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
     document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-    }
   }
-xmlhttp.open("GET","ajax_info.txt",true);
+}
+xmlhttp.open("GET","/some_url",true);
 xmlhttp.send();
 </pre>
     </article>
@@ -368,19 +369,25 @@ xmlhttp.send();
 
   <slide>
     <hgroup>
-      <h2>Browser Checks</h2>
+      <h2>Browser Detection</h2>
       <h3></h3>
     </hgroup>
     <article>
       <pre class="prettyprint" data-lang="javascript">
-        TODO: Browser check sample here
+<b>if (navigator.userAgent.indexOf("MSIE") != -1)</b>{
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+} else <b>if (navigator.userAgent.indexOf("Mozilla") != -1)</b> {
+  xmlhttp=new XMLHttpRequest();
+} else if(...) {
+  // and so on...
+}
 </pre>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Feature Checks</h2>
+      <h2>Feature Detection</h2>
       <h3></h3>
     </hgroup>
     <article>
@@ -441,20 +448,25 @@ else
     </hgroup>
     <article>
       <pre class="prettyprint" data-lang="javascript">
-function requestUsingGet2(url, listener) {
-    var myAjax = new Ajax.Request(
-    url,
-    // AJAX options
-    {
-    method: 'get', // HTTP method
-    parameters: pars, // Parameters
-    onComplete: processRequest // Callback function
-    }
+function xhrWithPrototypeAJAX(url, listener) {
+    var myAjax = <b>new Ajax.Request</b>(
+      url,
+      // AJAX options
+      <b>{
+        method: 'GET', // HTTP method
+        parameters: pars, // Parameters
+        onComplete: processRequest // Callback function
+      }</b>
     );
 }
 </pre>
       <pre class="prettyprint" data-lang="javascript">
-        TODO: Prototype Object.create sample
+var AClass = <b>Class.create</b>({
+  <b>initialize:</b> function(name) {
+  },
+  <b>aMethod:</b> function(message) {
+  }
+});
 </pre>
     </article>
   </slide>
