@@ -211,7 +211,6 @@ URL: https://code.google.com/p/io-2012-slides
       <h3></h3>
     </hgroup>
     <article>
-      <p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p>
       <pre class="prettyprint" data-lang="javascript">
 function verifyFormData() {
     a = 0; r = "";
@@ -292,6 +291,308 @@ function verifyFormData() {
       <h2>Generation 1 - Web 2.0 and RIA</h2>
       <h3></h3>
     </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The advent of Web 2.0</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>[1997] XHR
+          <ul>
+            <li>(not widely used)</li>
+          </ul>
+        </li>
+        <li>[2004] GMail
+          <ul>
+            <li>brought XHR, AJAX, SPA under spotlight</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Early XHR</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="javascript">
+function createRequest() {
+    if (window.XMLHttpRequest) {
+        return new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        return new ActiveXObject("Microsoft.XMLHTTP");
+    }
+}
+function requestUsingGet(url, listener) {
+    var url = "count?text=" + getElementText("myinputid");
+    req = createRequest();
+    req.onreadystatechange = listener;
+    req.open("GET", url, true); 
+    req.send(null);
+}
+function getFromResponse(request, name) {
+    return request.responseXML.getElementsByTagName(name)[0].childNodes[0].nodeValue;
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>...</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","ajax_info.txt",true);
+xmlhttp.send();
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Browser Checks</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+        TODO: Browser check sample here
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Feature Checks</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+<b>if (window.XMLHttpRequest)</b>
+{// IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+}
+else
+{// IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Generation 2 - JavaScript Frameworks</h2>
+      <h3></h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Issues</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Browser incompatibilities</li>
+        <li>JavaScript OO was just plain <i>weird</i> (for people used to popular OO languages of the era - C++, Java)</li>
+        <li>Multiple (potentially baffling) ways to create objects, functions</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Initial frameworks</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>[Feb 2005] Prototype.js - original $ - bundled with Rails</li>
+        <li>Scriptaculous</li>
+        <li>Dojo</li>
+        <li>...</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Prototype (and other early framework) examples</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function requestUsingGet2(url, listener) {
+    var myAjax = new Ajax.Request(
+    url,
+    // AJAX options
+    {
+    method: 'get', // HTTP method
+    parameters: pars, // Parameters
+    onComplete: processRequest // Callback function
+    }
+    );
+}
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+        TODO: Prototype Object.create sample
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Problems solved</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Browser incompatibilities</li>
+        <li>Easy, consistent API for structured JS</li>
+        <li>Consistent AJAX API</li>
+        <li>Focus largely still on animations, effects, transitions</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Avoiding raw JavaScript</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>GWT</li>
+        <li>DWR</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>$</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Easier DOM manipulation API</li>
+        <li>Features unavailable in native DOM (CSS selectors)</li>
+        <li>Did not solve JS code structuring - still largely ad-hoc scripts</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Generation 3 - MVC Frameworks</h2>
+      <h3></h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Rise of Single Page Applications</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>GMail</li>
+        <li>RIA</li>
+        <li>Focus towards desktop application like UX in web apps</li>
+        <li>Resulted in JS codebase complextity increasing, forcing to consider approaches to better manage it</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>JS Engine Race</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>V8</li>
+        <li>Performant browsers and JS Engines</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>MVC Frameworks</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>BackboneJS</li>
+        <li>KnockoutJS</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modular JavaScript</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>AMD</li>
+        <li>RequireJS</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Package Management</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>npm</li>
+        <li>bower</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Generation 4 - Client side application frameworks</h2>
+      <h3></h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>AngularJS and kin</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Declarative</li>
+        <li>Two-way databinding</li>
+        <li>TDD</li>
+        <li>DI</li>
+        <li>... all good practices from the desktop app world</li>
+      </ul>
+    </article>
   </slide>
 
   <slide>
