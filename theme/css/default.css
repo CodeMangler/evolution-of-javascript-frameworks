@@ -465,7 +465,7 @@ h1, h2, h3 {
 /* line 280, ../scss/default.scss */
 h2 {
   font-size: 45px;
-  line-height: 45px;
+  line-height: 1.2;
   letter-spacing: -2px;
   color: #515151;
 }
@@ -488,6 +488,7 @@ ul {
 /* line 300, ../scss/default.scss */
 ul li {
   margin-bottom: 0.5em;
+  line-height: 1.2;
 }
 /* line 303, ../scss/default.scss */
 ul li ul {
@@ -501,7 +502,7 @@ ul li ul li:before {
 }
 /* line 314, ../scss/default.scss */
 ul > li:before {
-  content: '\00B7';
+  content: '\2022';
   margin-left: -1em;
   position: absolute;
   font-weight: 600;
