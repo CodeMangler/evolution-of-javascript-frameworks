@@ -635,14 +635,32 @@ function xhrWithPrototypeAJAX(url, listener) {
 
   <slide>
     <hgroup>
-      <h2>Avoiding raw JavaScript</h2>
+      <h2>GWT</h2>
       <h3></h3>
     </hgroup>
     <article>
-      <ul class="build">
-        <li>GWT</li>
-        <li>DWR</li>
-      </ul>
+      <pre class="prettyprint" data-lang="java">
+public class WrapperWidget extends Composite{
+      public WrapperWidget(){
+          VerticalPanel vPanel = new VerticalPanel();
+          TextField field = new TextField();
+          Button button = new Button("Finish");
+          vPanel.add(field);
+          vPanel.add(button);
+          initWidget(vPanel);
+      }
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>DWR</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/dwr.png" class="reflect" alt="" title="" width="700px">
+      <footer class="source"></footer>
     </article>
   </slide>
 
