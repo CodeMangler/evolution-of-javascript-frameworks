@@ -40,6 +40,9 @@ URL: https://code.google.com/p/io-2012-slides
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
     </hgroup>
+    <article>
+      <center><img src="images/evolution_sid.jpg" class="reflect"/></center>
+    </article>
   </slide>
 
   <slide class="segue dark nobackground">
@@ -155,7 +158,7 @@ URL: https://code.google.com/p/io-2012-slides
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Origin of JavaScript</h2>
+      <h2>Origin of JavaScript [Protozoa]</h2>
     </hgroup>
   </slide>
 
@@ -185,12 +188,11 @@ URL: https://code.google.com/p/io-2012-slides
     </article>
   </slide>
 
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Generation 0 - Early Days</h2>
-      <h3></h3>
-    </hgroup>
+  <slide>
+    <article>
+      <center><img src="images/early_dom.png" class="reflect" alt="" title="" width="800px"></center>
+      <footer class="source"></footer>
+    </article>
   </slide>
 
   <slide>
@@ -229,13 +231,6 @@ function verifyFormData() {
 
   <slide>
     <article>
-      <center><img src="images/early_dom.png" class="reflect" alt="" title="" width="800px"></center>
-      <footer class="source"></footer>
-    </article>
-  </slide>
-
-  <slide>
-    <article>
       <center><img src="images/disable_scripts.png" class="reflect" alt="" title="" width="700px"></center>
       <footer class="source"></footer>
     </article>
@@ -251,10 +246,19 @@ function verifyFormData() {
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <p>Frameworks? What frameworks?</p>
+    </article>
+  </slide>
+
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Generation 1 - Web 2.0 and RIA</h2>
+      <h2>[Sponges] - Web 2.0 and RIA</h2>
       <h3></h3>
     </hgroup>
   </slide>
@@ -366,10 +370,19 @@ else
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <p>Frameworks? Well, maybe it's time we had some.</p>
+    </article>
+  </slide>
+
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Generation 2 - JavaScript Frameworks</h2>
+      <h2>[Flatworms] - JavaScript Frameworks</h2>
       <h3></h3>
     </hgroup>
   </slide>
@@ -390,6 +403,152 @@ else
 
   <slide>
     <hgroup>
+      <h2>Browser incompatibilities</h2>
+    </hgroup>
+    <article>
+      <center><img src="images/best_viewed_in_ie4.gif" class="reflect" alt="" title=""></center>
+      <footer class="source">source: http://bestsiteofalltime.com/assets/images/ie4.gif</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article>
+      <p>Netscape</p>
+      <pre class="prettyprint" data-lang="javascript">
+document.formname.textbox.focus()
+document.formname.textbox.select()
+</pre>
+<p>IE</p>
+      <pre class="prettyprint" data-lang="javascript">
+document.formname.textbox.select()
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>LAYERs and DIVs</h2>
+    </hgroup>
+    <article>
+      <p>Netscape</p>
+      <pre class="prettyprint" data-lang="javascript">
+ if( document.layers ) {
+   ...code that would be executed only by Netscape browsers...
+ } else {
+   ...code that would be executed only by Internet Explorer...
+ }</pre>    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Document Loaded</h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="javascript">
+bindReady: function() {
+    if ( readyList ) { return; }
+    readyList = jQuery._Deferred();
+    // Catch cases where $(document).ready() is called after the browser event has already occurred.
+    if ( document.readyState === "complete" ) {
+      // Handle it asynchronously to allow scripts the opportunity to delay ready
+      return setTimeout( jQuery.ready, 1 );
+    }
+    // Mozilla, Opera and webkit nightlies currently support this event
+    if ( document.addEventListener ) {
+      // Use the handy event callback
+      document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
+      // A fallback to window.onload, that will always work
+      window.addEventListener( "load", jQuery.ready, false );
+    // If IE event model is used
+    } else if ( document.attachEvent ) {
+      // ensure firing before onload, maybe late but safe also for iframes
+      document.attachEvent( "onreadystatechange", DOMContentLoaded );
+      // A fallback to window.onload, that will always work
+      window.attachEvent( "onload", jQuery.ready );
+      // If IE and not a frame continually check to see if the document is ready
+      var toplevel = false;
+      try {
+        toplevel = window.frameElement == null;
+      } catch(e) {}
+      if ( document.documentElement.doScroll && toplevel ) {
+        doScrollCheck();
+      }
+    }
+  }
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Weird OO (Differential Inheritance)</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+    this.getInfo = function() {
+        return this.color + ' ' + this.type + ' apple';
+    };
+}
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+}
+ 
+Apple.prototype.getInfo = function() {
+    return this.color + ' ' + this.type + ' apple';
+};
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Weird OO (Differential Inheritance)</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+var apple = {
+    type: "macintosh",
+    color: "red",
+    getInfo: function () {
+        return this.color + ' ' + this.type + ' apple';
+    }
+}
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+var apple = new function() {
+    this.type = "macintosh";
+    this.color = "red";
+    this.getInfo = function () {
+        return this.color + ' ' + this.type + ' apple';
+    };
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Weird OO (Differential Inheritance)</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
+      <p>this is determined by the caller context</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
       <h2>Initial frameworks</h2>
       <h3></h3>
     </hgroup>
@@ -398,7 +557,6 @@ else
         <li>[2004] dōjō toolkit
         <li>[Feb 2005] Prototype.js - original $ - bundled with Rails</li>
         <li>Scriptaculous</li>
-        <li>Dojo</li>
         <li>...</li>
       </ul>
     </article>
@@ -406,23 +564,51 @@ else
 
   <slide>
     <hgroup>
-      <h2>Prototype (and other early framework) examples</h2>
-      <h3></h3>
+      <h2>[2004] dōjō toolkit</h2>
+    </hgroup>
+    <article>
+      <center><img src="images/dojo_grid.png" class="reflect" alt="" title="" width="700px"></center>
+      <footer class="source"></footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>[2004] dōjō toolkit</h2>
     </hgroup>
     <article>
       <pre class="prettyprint" data-lang="javascript">
-function xhrWithPrototypeAJAX(url, listener) {
-    var myAjax = <b>new Ajax.Request</b>(
-      url,
-      // AJAX options
-      <b>{
-        method: 'GET', // HTTP method
-        parameters: pars, // Parameters
-        onComplete: processRequest // Callback function
-      }</b>
-    );
-}
+var AClass = declare(null, {
+});
 </pre>
+      <pre class="prettyprint" data-lang="javascript">
+var InheritedClass = declare([
+  SuperClassOne,
+  SuperClassTwo,
+  SuperClassThree
+],{
+});
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+dojo.xhrGet({ url: "#", form: "myForm",
+  load: function(response, ioArgs){
+      return response;
+  },
+
+  error: function(response, ioArgs){
+      return response;
+  }
+});
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>[2005] PrototypeJS</h2>
+      <h3></h3>
+    </hgroup>
+    <article>
       <pre class="prettyprint" data-lang="javascript">
 var AClass = <b>Class.create</b>({
   <b>initialize:</b> function(name) {
@@ -430,6 +616,17 @@ var AClass = <b>Class.create</b>({
   <b>aMethod:</b> function(message) {
   }
 });
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+function xhrWithPrototypeAJAX(url, listener) {
+    <b>new Ajax.Request</b>(url,
+      <b>{
+        method: 'GET', // HTTP method
+        parameters: pars, // Parameters
+        onComplete: processRequest // Callback function
+      }</b>
+    );
+}
 </pre>
     </article>
   </slide>
@@ -479,7 +676,7 @@ var AClass = <b>Class.create</b>({
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Generation 3 - MVC Frameworks</h2>
+      <h2>[Amphibians] - MVC Frameworks</h2>
       <h3></h3>
     </hgroup>
   </slide>
@@ -554,7 +751,7 @@ var AClass = <b>Class.create</b>({
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Generation 4 - Client side application frameworks</h2>
+      <h2>[Monkeys] - Client side application frameworks</h2>
       <h3></h3>
     </hgroup>
   </slide>
@@ -572,6 +769,90 @@ var AClass = <b>Class.create</b>({
         <li>DI</li>
         <li>... all good practices from the desktop app world</li>
       </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Backbone</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="javascript">
+var Todos = Backbone.Collection.extend({
+  <b>model: app.Todo,
+  utl: '/todos'</b>
+});
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+app.Todo = Backbone.Model.extend({
+  <b>defaults: {
+    title: '',
+    completed: false
+  }</b>
+});
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+  app.TodoView = Backbone.View.extend({
+    tagName:  'li',
+    template: _.template($('#item-template').html()),
+    <b>events: {
+      'click .toggle': 'toggleCompleted',
+      'blur .edit': 'close'
+    }</b>,
+
+    initialize: function () {
+      <b>this.listenTo(this.model, 'change', this.render);</b>
+    },
+
+    render: function () {
+      this.$el.html(this.template(this.model.toJSON()));
+      return this;
+    },
+});
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>AngularJS</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="javascript">
+var Todos = Backbone.Collection.extend({
+  <b>model: app.Todo</b>,
+  utl: '/todos'
+});
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+app.Todo = Backbone.Model.extend({
+  <b>defaults: {
+    title: '',
+    completed: false
+  }</b>
+});
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+  app.TodoView = Backbone.View.extend({
+    tagName:  'li',
+    template: _.template($('#item-template').html()),
+    <b>events: {
+      'click .toggle': 'toggleCompleted',
+      'blur .edit': 'close'
+    }</b>,
+
+    initialize: function () {
+      <b>this.listenTo(this.model, 'change', this.render);</b>
+    },
+
+    render: function () {
+      this.$el.html(this.template(this.model.toJSON()));
+      return this;
+    },
+});
+</pre>
     </article>
   </slide>
 

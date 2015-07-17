@@ -23,14 +23,14 @@ var SLIDE_CONFIG = {
   // Author information
   presenters: [{
     name: 'HariKrishnan',
-    company: 'Senior Associate, MavenHive',
+    company: '@harikrishnan83',
     gplus: 'http://plus.google.com/u/0/109092839344529278335',
     twitter: '@harikrishnan83',
-    www: 'http://www.you.com',
+    www: 'http://hkrishnan.in',
     github: 'http://github.com/harikrishnan83'
   }, {
     name: 'Dharampal H S',
-    company: 'Senior Associate, MavenHive',
+    company: '@CodeMangler',
     gplus: 'http://plus.google.com/+DharampalHS/',
     twitter: '@CodeMangler',
     www: 'http://dharampal.in',
