@@ -789,7 +789,6 @@ public class WrapperWidget extends Composite{
         <li>GMail</li>
         <li>RIA</li>
         <li>Focus towards desktop application like UX in web apps</li>
-        <li>Resulted in JS codebase complextity increasing, forcing to consider approaches to better manage it</li>
       </ul>
     </article>
   </slide>
@@ -868,93 +867,110 @@ app.Todo = Backbone.Model.extend({
 
   <slide>
     <hgroup>
-      <h2>Modular JavaScript</h2>
-      <h3></h3>
+      <h2></h2>
     </hgroup>
-    <article>
-      <ul class="build">
-        <li>AMD</li>
-        <li>RequireJS</li>
-      </ul>
+    <article class="flexbox vcenter">
+      <h2>Modular JavaScript</h2>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Package Management</h2>
-      <h3></h3>
+      <h2></h2>
     </hgroup>
-    <article>
-      <ul class="build">
-        <li>npm</li>
-        <li>bower</li>
-      </ul>
+    <article class="flexbox vcenter">
+      <h2>RequireJS</h2>
+      <h2>[AMD]</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>Package Management</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <center><h2>npm</h2></center>
+      <center><h2>bower</h2></center>
     </article>
   </slide>
 
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/mavenhive_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Client side application frameworks [Monkeys]</h2>
+      <h2>Client side application frameworks [Apes]</h2>
       <h3></h3>
     </hgroup>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>AngularJS and kin</h2>
-      <h3></h3>
+      <h2></h2>
     </hgroup>
-    <article>
-      <ul class="build">
-        <li>Declarative</li>
-        <li>Two-way databinding</li>
-        <li>Testability</li>
-        <li>DI</li>
-        <li>... all good practices from the desktop app world</li>
-      </ul>
+    <article class="flexbox vcenter">
+      <h2>AngularJS and kin</h2>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>AngularJS</h2>
-      <h3></h3>
+      <h2></h2>
     </hgroup>
-    <article class="smaller">
-      <pre class="prettyprint" data-lang="javascript">
-var Todos = Backbone.Collection.extend({
-  <b>model: app.Todo</b>,
-  utl: '/todos'
-});
-</pre>
-      <pre class="prettyprint" data-lang="javascript">
-app.Todo = Backbone.Model.extend({
-  <b>defaults: {
-    title: '',
-    completed: false
-  }</b>
-});
-</pre>
-      <pre class="prettyprint" data-lang="javascript">
-  app.TodoView = Backbone.View.extend({
-    tagName:  'li',
-    template: _.template($('#item-template').html()),
-    <b>events: {
-      'click .toggle': 'toggleCompleted',
-      'blur .edit': 'close'
-    }</b>,
+    <article class="flexbox vcenter">
+      <h2>Declarative</h2>
+    </article>
+  </slide>
 
-    initialize: function () {
-      <b>this.listenTo(this.model, 'change', this.render);</b>
-    },
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>Databinding</h2>
+    </article>
+  </slide>
 
-    render: function () {
-      this.$el.html(this.template(this.model.toJSON()));
-      return this;
-    },
-});
-</pre>
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>DI</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>Testability</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>Services</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2></h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>... and more concepts and good practices from the desktop app world</h2>
     </article>
   </slide>
 
